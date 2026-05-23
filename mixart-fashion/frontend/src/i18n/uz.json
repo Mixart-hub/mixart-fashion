@@ -1,0 +1,132 @@
+{
+  "nav": {
+    "home": "Bosh sahifa",
+    "catalog": "Katalog",
+    "cart": "Savat",
+    "wishlist": "Sevimlilar",
+    "orders": "Buyurtmalar",
+    "profile": "Profil",
+    "branches": "Filiallar",
+    "search": "Qidirish..."
+  },
+  "home": {
+    "hero_title": "Zamonaviy moda,\nbetakror uslub",
+    "hero_sub": "Mixart Fashion — Sizning ichki go'zalligingizni ochib beruvchi kiyimlar",
+    "hero_btn": "Kolleksiyani ko'rish",
+    "featured": "Tanlangan mahsulotlar",
+    "new_arrivals": "Yangi kelganlar",
+    "categories": "Kategoriyalar",
+    "branches_title": "Bizning filiallar",
+    "loyalty_title": "Bonus dasturi",
+    "loyalty_desc": "Har xaridda ball to'plang va keyingi xaridda chegirma oling"
+  },
+  "product": {
+    "add_to_cart": "Savatga qo'shish",
+    "add_to_wishlist": "Sevimlilar",
+    "buy_now": "Hozir xarid qilish",
+    "size": "O'lcham",
+    "color": "Rang",
+    "quantity": "Miqdor",
+    "in_stock": "Mavjud",
+    "out_of_stock": "Tugagan",
+    "description": "Tavsif",
+    "reviews": "Sharhlar",
+    "similar": "O'xshash mahsulotlar",
+    "price": "Narx",
+    "compare_price": "Eski narx"
+  },
+  "cart": {
+    "title": "Savat",
+    "empty": "Savat bo'sh",
+    "empty_desc": "Mahsulotlarni savatga qo'shing",
+    "continue": "Xaridni davom ettirish",
+    "checkout": "Rasmiylashtiris",
+    "total": "Jami",
+    "items": "ta mahsulot",
+    "remove": "O'chirish",
+    "clear": "Tozalash"
+  },
+  "checkout": {
+    "title": "Buyurtmani rasmiylashtirish",
+    "delivery": "Yetkazib berish",
+    "pickup": "O'zi olib ketish",
+    "address": "Manzil",
+    "branch": "Filial",
+    "payment": "To'lov usuli",
+    "payme": "Payme",
+    "click": "Click",
+    "cash": "Naqd pul",
+    "notes": "Izoh",
+    "place_order": "Buyurtma berish",
+    "order_success": "Buyurtma muvaffaqiyatli berildi!",
+    "loyalty_use": "Bonus ballardan foydalanish"
+  },
+  "orders": {
+    "title": "Buyurtmalarim",
+    "empty": "Buyurtmalar yo'q",
+    "status": {
+      "PENDING": "Kutilmoqda",
+      "CONFIRMED": "Tasdiqlandi",
+      "PROCESSING": "Tayyorlanmoqda",
+      "SHIPPED": "Yetkazilmoqda",
+      "DELIVERED": "Yetkazildi",
+      "CANCELLED": "Bekor qilindi"
+    },
+    "details": "Tafsilotlar",
+    "cancel": "Bekor qilish",
+    "track": "Kuzatish"
+  },
+  "profile": {
+    "title": "Profil",
+    "edit": "Tahrirlash",
+    "save": "Saqlash",
+    "name": "Ism",
+    "email": "Email",
+    "phone": "Telefon",
+    "language": "Til",
+    "loyalty": "Bonus ballar",
+    "logout": "Chiqish"
+  },
+  "auth": {
+    "login": "Kirish",
+    "register": "Ro'yxatdan o'tish",
+    "email": "Email",
+    "password": "Parol",
+    "name": "Ism",
+    "phone": "Telefon",
+    "telegram": "Telegram orqali kirish",
+    "no_account": "Hisobingiz yo'qmi?",
+    "have_account": "Hisobingiz bormi?"
+  },
+  "review": {
+    "title": "Sharh qoldirish",
+    "rating": "Baho",
+    "comment": "Fikringiz",
+    "submit": "Yuborish",
+    "login_to_review": "Sharh qoldirish uchun kiring"
+  },
+  "branches": {
+    "title": "Bizning filiallar",
+    "tashkent": "Toshkent",
+    "samarkand": "Samarqand",
+    "bukhara": "Buxoro",
+    "view_map": "Xaritada ko'rish",
+    "working_hours": "Ish vaqti"
+  },
+  "common": {
+    "loading": "Yuklanmoqda...",
+    "error": "Xatolik yuz berdi",
+    "retry": "Qayta urinish",
+    "back": "Orqaga",
+    "close": "Yopish",
+    "confirm": "Tasdiqlash",
+    "cancel": "Bekor qilish",
+    "sum": "so'm",
+    "all": "Barchasi",
+    "search": "Qidirish",
+    "filter": "Filter",
+    "sort": "Saralash",
+    "not_found": "Topilmadi",
+    "page_not_found": "Sahifa topilmadi"
+  }
+}

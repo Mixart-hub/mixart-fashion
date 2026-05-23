@@ -1,0 +1,14 @@
+{
+  "name": "mixart-fashion",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "concurrently -n frontend,admin,backend -c cyan,magenta,green \"cd frontend && npm run dev\" \"cd admin && npm run dev\" \"cd backend && npm run dev\"",
+    "install:all": "cd frontend && npm i && cd ../admin && npm i && cd ../backend && npm i",
+    "setup:db": "cd backend && node src/database/migrate.js && node src/database/seed.js",
+    "migrate": "cd backend && node src/database/migrate.js",
+    "seed": "cd backend && node src/database/seed.js"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}

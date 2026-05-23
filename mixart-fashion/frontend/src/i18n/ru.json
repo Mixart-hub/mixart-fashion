@@ -1,0 +1,132 @@
+{
+  "nav": {
+    "home": "Главная",
+    "catalog": "Каталог",
+    "cart": "Корзина",
+    "wishlist": "Избранное",
+    "orders": "Заказы",
+    "profile": "Профиль",
+    "branches": "Филиалы",
+    "search": "Поиск..."
+  },
+  "home": {
+    "hero_title": "Современная мода,\nуникальный стиль",
+    "hero_sub": "Mixart Fashion — одежда, раскрывающая вашу внутреннюю красоту",
+    "hero_btn": "Смотреть коллекцию",
+    "featured": "Избранные товары",
+    "new_arrivals": "Новые поступления",
+    "categories": "Категории",
+    "branches_title": "Наши филиалы",
+    "loyalty_title": "Бонусная программа",
+    "loyalty_desc": "Накапливайте баллы с каждой покупки и получайте скидки"
+  },
+  "product": {
+    "add_to_cart": "В корзину",
+    "add_to_wishlist": "В избранное",
+    "buy_now": "Купить сейчас",
+    "size": "Размер",
+    "color": "Цвет",
+    "quantity": "Количество",
+    "in_stock": "В наличии",
+    "out_of_stock": "Нет в наличии",
+    "description": "Описание",
+    "reviews": "Отзывы",
+    "similar": "Похожие товары",
+    "price": "Цена",
+    "compare_price": "Старая цена"
+  },
+  "cart": {
+    "title": "Корзина",
+    "empty": "Корзина пуста",
+    "empty_desc": "Добавьте товары в корзину",
+    "continue": "Продолжить покупки",
+    "checkout": "Оформить заказ",
+    "total": "Итого",
+    "items": "товара",
+    "remove": "Удалить",
+    "clear": "Очистить"
+  },
+  "checkout": {
+    "title": "Оформление заказа",
+    "delivery": "Доставка",
+    "pickup": "Самовывоз",
+    "address": "Адрес",
+    "branch": "Филиал",
+    "payment": "Способ оплаты",
+    "payme": "Payme",
+    "click": "Click",
+    "cash": "Наличные",
+    "notes": "Примечание",
+    "place_order": "Оформить заказ",
+    "order_success": "Заказ успешно оформлен!",
+    "loyalty_use": "Использовать бонусные баллы"
+  },
+  "orders": {
+    "title": "Мои заказы",
+    "empty": "Заказов нет",
+    "status": {
+      "PENDING": "Ожидает",
+      "CONFIRMED": "Подтверждён",
+      "PROCESSING": "Готовится",
+      "SHIPPED": "Доставляется",
+      "DELIVERED": "Доставлен",
+      "CANCELLED": "Отменён"
+    },
+    "details": "Подробнее",
+    "cancel": "Отменить",
+    "track": "Отследить"
+  },
+  "profile": {
+    "title": "Профиль",
+    "edit": "Редактировать",
+    "save": "Сохранить",
+    "name": "Имя",
+    "email": "Email",
+    "phone": "Телефон",
+    "language": "Язык",
+    "loyalty": "Бонусные баллы",
+    "logout": "Выйти"
+  },
+  "auth": {
+    "login": "Войти",
+    "register": "Зарегистрироваться",
+    "email": "Email",
+    "password": "Пароль",
+    "name": "Имя",
+    "phone": "Телефон",
+    "telegram": "Войти через Telegram",
+    "no_account": "Нет аккаунта?",
+    "have_account": "Уже есть аккаунт?"
+  },
+  "review": {
+    "title": "Оставить отзыв",
+    "rating": "Оценка",
+    "comment": "Ваш отзыв",
+    "submit": "Отправить",
+    "login_to_review": "Войдите, чтобы оставить отзыв"
+  },
+  "branches": {
+    "title": "Наши филиалы",
+    "tashkent": "Ташкент",
+    "samarkand": "Самарканд",
+    "bukhara": "Бухара",
+    "view_map": "На карте",
+    "working_hours": "Часы работы"
+  },
+  "common": {
+    "loading": "Загрузка...",
+    "error": "Произошла ошибка",
+    "retry": "Повторить",
+    "back": "Назад",
+    "close": "Закрыть",
+    "confirm": "Подтвердить",
+    "cancel": "Отменить",
+    "sum": "сум",
+    "all": "Все",
+    "search": "Поиск",
+    "filter": "Фильтр",
+    "sort": "Сортировка",
+    "not_found": "Не найдено",
+    "page_not_found": "Страница не найдена"
+  }
+}

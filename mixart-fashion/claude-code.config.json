@@ -1,0 +1,26 @@
+{
+  "project": "mixart-fashion",
+  "type": "fullstack",
+  "ai_provider": "anthropic",
+  "model": "claude-opus-4",
+  "target_platform": "web",
+  "frameworks": {
+    "frontend": "react",
+    "backend": "nodejs",
+    "database": "postgresql"
+  },
+  "features": {
+    "auth": true,
+    "payments": true,
+    "realtime": true,
+    "admin_panel": true,
+    "mobile_responsive": true
+  },
+  "integrations": {
+    "telegram": true,
+    "payme": true,
+    "click": true,
+    "sms": true,
+    "email": true
+  }
+}

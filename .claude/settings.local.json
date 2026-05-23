@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(New-Item *)",
+      "PowerShell(Get-Content *)",
+      "PowerShell(cat *)",
+      "PowerShell(npm *)",
+      "PowerShell(npx -y @upstash/context7-mcp@latest --version 2>$null; echo \"Exit: $LASTEXITCODE\")",
+      "PowerShell(cmd /c \"dir /s /b C:\\\\pr\\\\mixart_windows\\\\mixart\\\\frontend\\\\src\")",
+      "PowerShell(cmd /c \"dir /s /b C:\\\\pr\\\\mixart_windows\\\\mixart\\\\admin\")",
+      "PowerShell(\\(Get-Content \"C:\\\\pr\\\\mixart_windows\\\\mixart\\\\frontend\\\\src\\\\components\\\\pages\\\\ProfilePage.jsx\"\\).Count; \\(Get-Content \"C:\\\\pr\\\\mixart_windows\\\\mixart\\\\frontend\\\\src\\\\components\\\\pages\\\\OrdersPage.jsx\"\\).Count 2>$null)",
+      "PowerShell(cmd /c \"dir C:\\\\pr\\\\mixart_windows\\\\mixart\\\\backend\\\\src 2>nul || echo NOT_EXISTS\")",
+      "PowerShell(Get-ChildItem -Recurse \"C:\\\\pr\\\\mixart_windows\\\\mixart\\\\backend\" | Where-Object { $_.Extension -eq \".js\" } | Select-Object -ExpandProperty FullName)",
+      "PowerShell(Get-ChildItem \"C:\\\\pr\\\\mixart_windows\\\\mixart\\\\backend\" -Force | Select-Object Name, Attributes | Where-Object { $_.Name -notlike \"node_modules\" -and $_.Name -notlike \"src\" -and $_.Name -notlike \"media\" })",
+      "PowerShell(Get-Job *)",
+      "PowerShell(Get-NetTCPConnection *)",
+      "PowerShell(Get-ChildItem C:\\\\pr\\\\mixart_windows\\\\mixart\\\\frontend\\\\src -Recurse | Where-Object { !$_.PSIsContainer } | Select-Object FullName | Format-List)",
+      "PowerShell(Get-ChildItem C:\\\\pr\\\\mixart_windows\\\\mixart\\\\backend\\\\src -Recurse | Where-Object { !$_.PSIsContainer } | Select-Object FullName | Format-List)"
+    ]
+  }
+}

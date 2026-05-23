@@ -1,0 +1,132 @@
+{
+  "nav": {
+    "home": "Home",
+    "catalog": "Catalog",
+    "cart": "Cart",
+    "wishlist": "Wishlist",
+    "orders": "Orders",
+    "profile": "Profile",
+    "branches": "Branches",
+    "search": "Search..."
+  },
+  "home": {
+    "hero_title": "Modern fashion,\nunique style",
+    "hero_sub": "Mixart Fashion — clothing that reveals your inner beauty",
+    "hero_btn": "View Collection",
+    "featured": "Featured Products",
+    "new_arrivals": "New Arrivals",
+    "categories": "Categories",
+    "branches_title": "Our Branches",
+    "loyalty_title": "Loyalty Program",
+    "loyalty_desc": "Earn points with every purchase and get discounts"
+  },
+  "product": {
+    "add_to_cart": "Add to Cart",
+    "add_to_wishlist": "Wishlist",
+    "buy_now": "Buy Now",
+    "size": "Size",
+    "color": "Color",
+    "quantity": "Quantity",
+    "in_stock": "In Stock",
+    "out_of_stock": "Out of Stock",
+    "description": "Description",
+    "reviews": "Reviews",
+    "similar": "Similar Products",
+    "price": "Price",
+    "compare_price": "Old Price"
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": "Your cart is empty",
+    "empty_desc": "Add products to your cart",
+    "continue": "Continue Shopping",
+    "checkout": "Checkout",
+    "total": "Total",
+    "items": "items",
+    "remove": "Remove",
+    "clear": "Clear"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "delivery": "Delivery",
+    "pickup": "Pickup",
+    "address": "Address",
+    "branch": "Branch",
+    "payment": "Payment Method",
+    "payme": "Payme",
+    "click": "Click",
+    "cash": "Cash",
+    "notes": "Notes",
+    "place_order": "Place Order",
+    "order_success": "Order placed successfully!",
+    "loyalty_use": "Use loyalty points"
+  },
+  "orders": {
+    "title": "My Orders",
+    "empty": "No orders yet",
+    "status": {
+      "PENDING": "Pending",
+      "CONFIRMED": "Confirmed",
+      "PROCESSING": "Processing",
+      "SHIPPED": "Shipped",
+      "DELIVERED": "Delivered",
+      "CANCELLED": "Cancelled"
+    },
+    "details": "Details",
+    "cancel": "Cancel",
+    "track": "Track"
+  },
+  "profile": {
+    "title": "Profile",
+    "edit": "Edit",
+    "save": "Save",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "language": "Language",
+    "loyalty": "Loyalty Points",
+    "logout": "Log Out"
+  },
+  "auth": {
+    "login": "Log In",
+    "register": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "phone": "Phone",
+    "telegram": "Login with Telegram",
+    "no_account": "Don't have an account?",
+    "have_account": "Already have an account?"
+  },
+  "review": {
+    "title": "Write a Review",
+    "rating": "Rating",
+    "comment": "Your comment",
+    "submit": "Submit",
+    "login_to_review": "Log in to write a review"
+  },
+  "branches": {
+    "title": "Our Branches",
+    "tashkent": "Tashkent",
+    "samarkand": "Samarkand",
+    "bukhara": "Bukhara",
+    "view_map": "View on Map",
+    "working_hours": "Working Hours"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "back": "Back",
+    "close": "Close",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "sum": "UZS",
+    "all": "All",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "not_found": "Not Found",
+    "page_not_found": "Page Not Found"
+  }
+}

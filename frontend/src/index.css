@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #faf7f8;
+  color: #2d1020;
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+::-webkit-scrollbar { width: 0; }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom, 16px); }
+
+@keyframes shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position:  600px 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #EFEFEF 25%, #DEDEDE 50%, #EFEFEF 75%);
+  background-size: 1200px 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}

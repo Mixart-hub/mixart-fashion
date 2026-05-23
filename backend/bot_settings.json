@@ -1,0 +1,10 @@
+{
+  "welcome_uz": "Assalomu alaykum, {name}! \n\nMixart Fashion do'koniga xush kelibsiz!\n\nQuyidagi tugmani bosib xarid qiling:",
+  "welcome_ru": "Привет, {name}! \n\nДобро пожаловать в Mixart Fashion!\n\nНажмите кнопку ниже:",
+  "btn_shop_uz": "🛍 Do'konni ochish",
+  "btn_shop_ru": "🛍 Открыть магазин",
+  "operator_welcome": "Assalomu alaykum, {name}! 👋\n\nSiz operator sifatida kirdingiz.\n\n/orders — Yangi buyurtmalar\n/stats — Statistika",
+  "seller_welcome": "Assalomu alaykum, {name}! 👋\n\nSiz sotuvchi sifatida kirdingiz.\n\n/orders — Yangi buyurtmalar",
+  "order_new_text": "🆕 Yangi buyurtma #{id}\n\n👤 Mijoz: {customer}\n💰 Summa: ${amount}\n📍 Manzil: {address}",
+  "help_text": "📞 Aloqa:\n\n📱 Telefon: +998 90 000 00 00\n📧 Email: info@mixart.uz"
+}
