@@ -3,6 +3,8 @@ node_modules/
 *.db.lock/
 .env.node
 .env.node.production
+.env.windows
+backend/.env
 dist/
 build/
 uploads/
