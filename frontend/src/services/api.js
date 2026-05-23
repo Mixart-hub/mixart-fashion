@@ -33,7 +33,8 @@ export const productAPI = {
   trending: () => api.get('/products/trending'),
   flashSale: () => api.get('/flash-sales/active'),
   toggleFavorite: (id, user_id) => api.post(`/products/${id}/favorite`, null, { params: { user_id } }),
-  addReview: (id, data) => api.post(`/products/${id}/review`, null, { params: data }),
+  addReview: (product_id, user_id, rating, comment) =>
+    api.post(`/products/${product_id}/review`, null, { params: { user_id, rating, comment } }),
   getFavorites: (user_id) => api.get('/products/', { params: { favorites_of: user_id } }),
 }
 
@@ -91,6 +92,8 @@ export const notificationAPI = {
 export const reviewAPI = {
   add: (product_id, user_id, rating, comment) =>
     api.post(`/products/${product_id}/review`, null, { params: { user_id, rating, comment } }),
+  list: (product_id, limit = 20) =>
+    api.get('/reviews', { params: { product_id, limit } }),
 }
 
 export const uploadAPI = {

@@ -2,7 +2,7 @@
 
 > Claude Code: HAR SESSIYA boshida bu faylni o'qi.
 > HAR SESSIYA oxirida bu faylni yangila.
-> Oxirgi yangilanish: 2026-05-23
+> Oxirgi yangilanish: 2026-05-23 (Sessiya 10)
 
 ---
 
@@ -123,6 +123,70 @@
 - [ ] SSL sertifikat: Certbot bilan (DEPLOY.md da ko'rsatilgan)
 - [ ] Telegram bot tokenini haqiqiy bot bilan ulash
 
+## ✅ Sessiya 9b — Inventory + Mahsulot rasmlari (2026-05-23)
+
+### Inventory
+- 97 ta inventory yozuv qo'shildi (14 mahsulot × o'lcham × rang, Tashkent filiali)
+- Admin panel `/inventory` — 695 dona jami, 0 kam zaxira, ishlaydi
+- ProductDetail'da `✓ Omborida: N ta` yashil ko'rsatiladi
+
+### Mahsulot rasmlari
+- Unsplash'dan 10 ta moda rasmi yuklandi (`backend/media/products/`)
+- 13 ta mahsulotga rasm biriktirildi (PUT /api/admin/products/:id)
+- Catalog, Home (trending), ProductDetail — real rasmlar ko'rinadi
+- Admin panel inventarida rasm ikonlari ko'rinishi uchun mavjud
+
+---
+
+## ✅ Sessiya 9 — Frontend UI to'liq yaxshilandi (2026-05-23)
+
+### Logo / Branding
+- `Logo` CSS komponenti: "M" monogram (rose gold doira) + "MIXART" serif + "FASHION" kichik spacing
+- Homepage va CatalogPage headerida ishlatiladi
+- `frontend/public/` bo'sh bo'lsa CSS monogram ko'rsatiladi
+
+### Narx format
+- Barcha kartalar: `299 000 so'm` (toLocaleString('ru-RU')) — dollar yo'q
+
+### Rasm placeholder
+- Emoji (`👗`) o'chirildi — rose gold gradient (`#F5EDE8 → #DCAA80 → #C9956C`) + kiyim SVG ikona + mahsulot nomi
+- `SkeletonCard.jsx` PlaceholderMiniCard va PlaceholderGridCard yangilandi
+- `HomePage.jsx` MiniCard, `CatalogPage.jsx` ProductGridCard yangilandi
+
+### Sevimlilar — real API
+- `store.js`: `favoriteIds`, `addFavoriteId`, `removeFavoriteId` qo'shildi (localStorage'da saqlanadi)
+- `HomePage` MiniCard heart: `productAPI.toggleFavorite()` + store sync + toast
+- `CatalogPage` ProductGridCard heart: bir xil
+- `ProductPage` heart: store'dan `isFav` o'qiydi, API bilan yangilaydi
+
+### "Savatchaga qo'shish" — to'g'ri ishlaydi
+- `CatalogPage` kartasida:
+  - Mahsulotda o'lcham/rang bo'lsa → ProductDetail ga yo'naltiradi
+  - Bo'lmasa → `cartAPI.add()` to'g'ridan-to'g'ri + `setCartCount` + toast
+- `ProductPage` — avvalgi kabi to'liq ishlaydi
+
+### Sharhlar bo'limi — ProductPage
+- `productAPI.get(id)` allaqachon `reviews[]` qaytaradi
+- `ReviewCard` komponenti: avatar, ism, sana, yulduzlar, izoh
+- Sharh formasi: interaktiv yulduz baho + matn + "Sharh yuborish" tugmasi
+- `productAPI.addReview()` to'g'ri query params bilan fix qilindi
+- `api.js`: `reviewAPI.list()` va `productAPI.addReview()` metodi yangilandi
+
+### Infinite scroll — CatalogPage
+- Pagination o'chirildi
+- `IntersectionObserver` sentinel div orqali keyingi sahifa yuklanadi
+- "Loading" animatsiyasi (3 ta nuqta)
+
+### Yangi qismlar — HomePage
+- ✨ Yangi mahsulotlar (`is_new_arrival`) bo'limi qo'shildi
+- Header: qidiruv tugmasi + bildirishnoma + Logo
+- Quick actions: 6 ta grid (Katalog, Buyurtmalar, Filiallar, Sevimlilar, Yangiliklar, AI Stilist)
+
+### Build natijasi
+- `npm run build` — 0 xato, barcha modullar muvaffaqiyatli ✅
+
+---
+
 ## ✅ Sessiya 8 — Telegram bot token + Top kategoriyalar (2026-05-23)
 
 ### Mahsulot Article / ID raqami + maydon sozlamalari
@@ -179,6 +243,23 @@
 
 ### api.js (admin)
 - `dashboardAPI.topCategories()` metodi qo'shildi
+
+---
+
+## ✅ Sessiya 10 — Checkout yaxshilandi (2026-05-23)
+
+### Frontend (CartPage.jsx)
+- `delivery_name` maydoni — qabul qiluvchi ismi (profil'dan auto-fill)
+- `delivery_phone` maydoni — telefon raqami (majburiy, regex validatsiya)
+- `estimated_delivery` — 3 ta vaqt oynasi: Ertalab/Tushdan keyin/Kechqurun
+- `phone` xato holati (`phoneErr`) — qizil border + matn
+- `placeOrder()` — yangi maydonlarni backendga yuboradi
+
+### Backend (orders.js)
+- `estimated_delivery` parametri qo'shildi (destructuring + INSERT)
+
+### OrdersPage (CartPage.jsx ichida)
+- Expand qilinganda `delivery_phone`, `delivery_name`, `estimated_delivery` ko'rsatiladi
 
 ---
 

@@ -62,6 +62,12 @@ const TXT = {
   },
 }
 
+const DELIVERY_SLOTS = [
+  { id: 'morning',   label: { uz: '🌅 Ertalab',   ru: '🌅 Утром',   en: '🌅 Morning'   }, sub: { uz: '9:00–12:00', ru: '9:00–12:00', en: '9:00–12:00' } },
+  { id: 'afternoon', label: { uz: '🌤 Tushdan keyin', ru: '🌤 Днём', en: '🌤 Afternoon' }, sub: { uz: '12:00–17:00', ru: '12:00–17:00', en: '12:00–17:00' } },
+  { id: 'evening',   label: { uz: '🌙 Kechqurun',  ru: '🌙 Вечером', en: '🌙 Evening'   }, sub: { uz: '17:00–21:00', ru: '17:00–21:00', en: '17:00–21:00' } },
+]
+
 export function CartPage() {
   const nav = useNavigate()
   const { user, setCartCount, lang } = useStore()
@@ -71,15 +77,21 @@ export function CartPage() {
   const [placing, setPlacing] = useState(false)
   const [payMethod, setPayMethod] = useState('cash')
   const [address, setAddress] = useState('')
+  const [deliveryName, setDeliveryName] = useState('')
+  const [deliveryPhone, setDeliveryPhone] = useState('')
+  const [deliverySlot, setDeliverySlot] = useState('afternoon')
   const [note, setNote] = useState('')
   const [promoCode, setPromoCode] = useState('')
   const [promoDiscount, setPromoDiscount] = useState(0)
   const [promoMsg, setPromoMsg] = useState('')
   const [promoLoading, setPromoLoading] = useState(false)
+  const [phoneErr, setPhoneErr] = useState('')
 
   useEffect(() => {
     if (!user) { setLoading(false); return }
     cartAPI.get(user.id).then(setCart).catch(() => {}).finally(() => setLoading(false))
+    if (user.full_name) setDeliveryName(user.full_name)
+    if (user.phone) setDeliveryPhone(user.phone)
   }, [user])
 
   async function refreshCart() {
@@ -123,7 +135,12 @@ export function CartPage() {
 
   async function placeOrder() {
     if (!address.trim()) { toast.error('Manzilni kiriting'); return }
+    setPhoneErr('')
+    const phone = deliveryPhone.trim()
+    if (!phone) { setPhoneErr(lang === 'ru' ? 'Укажите номер телефона' : 'Telefon raqamini kiriting'); return }
+    if (!/^\+?[\d\s\-()]{7,15}$/.test(phone)) { setPhoneErr(lang === 'ru' ? 'Неверный формат' : 'Noto\'g\'ri format'); return }
     setPlacing(true)
+    const slot = DELIVERY_SLOTS.find(s => s.id === deliverySlot)
     try {
       const items = cart.items.map(i => ({
         product_id: i.product.id, size: i.size, color: i.color,
@@ -135,6 +152,9 @@ export function CartPage() {
         delivery_amount: DELIVERY_FEE,
         promo_code: promoCode.trim().toUpperCase() || null,
         delivery_address: address,
+        delivery_name: deliveryName.trim() || user?.full_name || null,
+        delivery_phone: phone,
+        estimated_delivery: slot ? slot.sub.uz : null,
         note: note.trim() || null,
         payment_method: payMethod,
       })
@@ -228,6 +248,52 @@ export function CartPage() {
             lang={lang}
             onGPS={(lat, lon) => setAddress(`${lat}, ${lon}`)}
           />
+
+          {/* Qabul qiluvchi ma'lumotlari */}
+          <div style={{ background: '#fff', borderRadius: 14, border: '0.5px solid #F3F4F6', padding: 14, marginBottom: 10 }}>
+            <div style={{ fontSize: 12, fontWeight: 600, color: '#1C1C1E', marginBottom: 10 }}>
+              {lang === 'ru' ? '👤 Получатель' : lang === 'en' ? '👤 Recipient' : '👤 Qabul qiluvchi'}
+            </div>
+            <input
+              value={deliveryName}
+              onChange={e => setDeliveryName(e.target.value)}
+              placeholder={lang === 'ru' ? 'Имя получателя...' : lang === 'en' ? 'Recipient name...' : 'Ism familiya...'}
+              style={{ width: '100%', border: '1px solid #F3F4F6', borderRadius: 10, padding: '8px 10px', fontSize: 12, outline: 'none', marginBottom: 8, boxSizing: 'border-box' }}
+            />
+            <input
+              value={deliveryPhone}
+              onChange={e => { setDeliveryPhone(e.target.value); setPhoneErr('') }}
+              placeholder="+998 90 123 45 67"
+              type="tel"
+              style={{ width: '100%', border: `1px solid ${phoneErr ? '#EF4444' : '#F3F4F6'}`, borderRadius: 10, padding: '8px 10px', fontSize: 12, outline: 'none', boxSizing: 'border-box' }}
+            />
+            {phoneErr && <div style={{ fontSize: 11, color: '#EF4444', marginTop: 4 }}>{phoneErr}</div>}
+          </div>
+
+          {/* Yetkazib berish vaqti */}
+          <div style={{ background: '#fff', borderRadius: 14, border: '0.5px solid #F3F4F6', padding: 14, marginBottom: 10 }}>
+            <div style={{ fontSize: 12, fontWeight: 600, color: '#1C1C1E', marginBottom: 10 }}>
+              {lang === 'ru' ? '🕐 Время доставки' : lang === 'en' ? '🕐 Delivery time' : '🕐 Yetkazib berish vaqti'}
+            </div>
+            <div style={{ display: 'flex', gap: 8 }}>
+              {DELIVERY_SLOTS.map(s => {
+                const active = deliverySlot === s.id
+                return (
+                  <button key={s.id} onClick={() => setDeliverySlot(s.id)} style={{
+                    flex: 1, padding: '9px 4px', borderRadius: 10, border: active ? '2px solid #C9956C' : '1px solid #F3F4F6',
+                    background: active ? '#FDF6F0' : '#fafafa', cursor: 'pointer', transition: 'all .15s', textAlign: 'center',
+                  }}>
+                    <div style={{ fontSize: 12, fontWeight: active ? 700 : 400, color: active ? '#C9956C' : '#374151' }}>
+                      {s.label[lang] || s.label.uz}
+                    </div>
+                    <div style={{ fontSize: 9, color: active ? '#B87333' : '#9CA3AF', marginTop: 2 }}>
+                      {s.sub[lang] || s.sub.uz}
+                    </div>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
 
           <PaymentMethodSelector selected={payMethod} onChange={setPayMethod} lang={lang} />
 
@@ -339,6 +405,16 @@ export function OrdersPage() {
                   {o.delivery_address && (
                     <div style={{ fontSize: 11, color: '#6B7280', marginBottom: 4 }}>
                       📍 <span style={{ color: '#111827' }}>{o.delivery_address}</span>
+                    </div>
+                  )}
+                  {o.delivery_phone && (
+                    <div style={{ fontSize: 11, color: '#6B7280', marginBottom: 4 }}>
+                      📞 <span style={{ color: '#111827' }}>{o.delivery_name ? `${o.delivery_name} · ` : ''}{o.delivery_phone}</span>
+                    </div>
+                  )}
+                  {o.estimated_delivery && (
+                    <div style={{ fontSize: 11, color: '#6B7280', marginBottom: 4 }}>
+                      🕐 <span style={{ color: '#111827' }}>{o.estimated_delivery}</span>
                     </div>
                   )}
                   {(o.items || []).length > 0 && (

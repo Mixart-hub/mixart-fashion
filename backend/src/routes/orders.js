@@ -10,7 +10,7 @@ function orderId() {
 // POST /api/orders
 router.post('/', auth, (req, res) => {
   try {
-    const { customer_id, items, total_amount, delivery_amount = 20000, promo_code, delivery_address, delivery_name, delivery_phone, note, payment_method = 'cash' } = req.body
+    const { customer_id, items, total_amount, delivery_amount = 20000, promo_code, delivery_address, delivery_name, delivery_phone, estimated_delivery, note, payment_method = 'cash' } = req.body
 
     if (!items || !items.length) return res.status(400).json({ detail: 'Buyurtma mahsulotlari kerak' })
     if (!delivery_address) return res.status(400).json({ detail: 'Yetkazib berish manzili kerak' })
@@ -25,8 +25,8 @@ router.post('/', auth, (req, res) => {
     const finalAmount = (total_amount || 0) - discountAmount + Number(delivery_amount)
     const oid = orderId()
 
-    db.prepare(`INSERT INTO orders (id, user_id, total_amount, final_amount, delivery_amount, discount_amount, status, payment_method, delivery_address, delivery_name, delivery_phone, promo_code, note)
-      VALUES (?, ?, ?, ?, ?, ?, 'new', ?, ?, ?, ?, ?, ?)`).run(oid, customer_id, total_amount, finalAmount, delivery_amount, discountAmount, payment_method, delivery_address, delivery_name || null, delivery_phone || null, promo_code || null, note || null)
+    db.prepare(`INSERT INTO orders (id, user_id, total_amount, final_amount, delivery_amount, discount_amount, status, payment_method, delivery_address, delivery_name, delivery_phone, estimated_delivery, promo_code, note)
+      VALUES (?, ?, ?, ?, ?, ?, 'new', ?, ?, ?, ?, ?, ?, ?)`).run(oid, customer_id, total_amount, finalAmount, delivery_amount, discountAmount, payment_method, delivery_address, delivery_name || null, delivery_phone || null, estimated_delivery || null, promo_code || null, note || null)
 
     const insertItem = db.prepare('INSERT INTO order_items (order_id, product_id, product_name, quantity, size, color, price, subtotal) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')
     items.forEach(item => {

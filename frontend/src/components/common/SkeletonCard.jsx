@@ -39,26 +39,18 @@ const PLACEHOLDER_MINI = [
 export function PlaceholderMiniCard({ index = 0 }) {
   const p = PLACEHOLDER_MINI[index % PLACEHOLDER_MINI.length]
   return (
-    <div
-      style={{
-        width: 130, flexShrink: 0, borderRadius: 16, overflow: 'hidden',
-        background: '#fff', boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
-        opacity: 0.75, cursor: 'default',
-      }}
-    >
-      <div style={{
-        height: 160, background: 'linear-gradient(135deg,#F5EDE8,#EDD5C4)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 48,
-      }}>
-        {p.emoji}
+    <div style={{ width: 140, flexShrink: 0, borderRadius: 16, overflow: 'hidden', background: '#fff', boxShadow: '0 2px 8px rgba(0,0,0,0.06)', opacity: 0.75, cursor: 'default' }}>
+      <div style={{ height: 175, background: 'linear-gradient(150deg,#F5EDE8 0%,#DCAA80 60%,#C9956C 100%)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+          <path d="M12 3c1.1 0 2 .9 2 2" stroke="rgba(255,255,255,.7)" strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M12 5L3 11h18L12 5z" fill="rgba(255,255,255,.2)" stroke="rgba(255,255,255,.65)" strokeWidth="1.2" strokeLinejoin="round"/>
+          <rect x="3" y="11" width="18" height="9" rx="1" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.65)" strokeWidth="1.2"/>
+        </svg>
+        <span style={{ fontSize: 9, color: 'rgba(255,255,255,.9)', fontWeight: 600, textAlign: 'center', padding: '0 10px' }}>{p.name}</span>
       </div>
       <div style={{ padding: '10px 10px 14px' }}>
-        <div style={{ fontSize: 12, fontWeight: 700, color: '#1C1C1E', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-          {p.name}
-        </div>
-        <div style={{ fontSize: 13, fontWeight: 700, color: '#C9956C', marginTop: 4 }}>
-          {p.price.toLocaleString()} so'm
-        </div>
+        <div style={{ fontSize: 12, fontWeight: 700, color: '#1C1C1E', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{p.name}</div>
+        <div style={{ fontSize: 13, fontWeight: 700, color: '#C9956C', marginTop: 4 }}>{p.price.toLocaleString()} so'm</div>
       </div>
     </div>
   )
@@ -76,15 +68,15 @@ export function PlaceholderGridCard({ index = 0 }) {
 
   return (
     <div style={{ background: '#fff', borderRadius: 16, overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.06)', opacity: 0.78, cursor: 'default' }}>
-      {/* Image placeholder */}
-      <div style={{
-        position: 'relative', height: 200,
-        background: 'linear-gradient(135deg,#F5EDE8,#EDD5C4)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-      }}>
-        <span style={{ fontSize: 56 }}>{p.emoji}</span>
+      <div style={{ position: 'relative', height: 210, background: 'linear-gradient(150deg,#F5EDE8 0%,#DCAA80 60%,#C9956C 100%)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+          <path d="M12 3c1.1 0 2 .9 2 2" stroke="rgba(255,255,255,.7)" strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M12 5L3 11h18L12 5z" fill="rgba(255,255,255,.2)" stroke="rgba(255,255,255,.65)" strokeWidth="1.2" strokeLinejoin="round"/>
+          <rect x="3" y="11" width="18" height="9" rx="1" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.65)" strokeWidth="1.2"/>
+        </svg>
+        <span style={{ fontSize: 10, color: 'rgba(255,255,255,.9)', fontWeight: 600, textAlign: 'center', padding: '0 12px' }}>{p.name}</span>
         {discount && (
-          <span style={{ position: 'absolute', top: 10, left: 10, background: '#C9956C', color: '#fff', fontSize: 9, padding: '2px 6px', borderRadius: 4, fontWeight: 700 }}>
+          <span style={{ position: 'absolute', top: 10, left: 10, background: 'rgba(0,0,0,0.3)', color: '#fff', fontSize: 9, padding: '2px 6px', borderRadius: 4, fontWeight: 700 }}>
             -{discount}%
           </span>
         )}
