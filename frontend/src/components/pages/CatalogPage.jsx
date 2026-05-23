@@ -203,8 +203,10 @@ export default function CatalogPage() {
     searchTimer.current = setTimeout(() => {
       setLoading(true)
       setPage(1)
-      const p = { limit: LIMIT, skip: 0, search: q }
+      const p = { limit: LIMIT, skip: 0, search: q, sort: sort.field, order: sort.order }
       if (selCat) p.category_id = selCat
+      if (params.get('trending')) p.is_trending = true
+      if (params.get('new'))      p.is_new_arrival = true
       productAPI.list(p)
         .then(r => { setProducts(r.items || []); setTotal(r.total || 0) })
         .catch(() => {})

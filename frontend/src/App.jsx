@@ -1,7 +1,7 @@
 import React, { useEffect, lazy, Suspense } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
-import { authAPI } from './services/api'
+import { authAPI, cartAPI } from './services/api'
 import { useStore } from './store/store'
 import BottomNav from './components/layout/BottomNav'
 import LoadingSpinner from './components/common/LoadingSpinner'
@@ -23,7 +23,7 @@ const NewsPage            = lazy(() => import('./components/pages/NewsPage'))
 const HIDE_NAV_PATHS = ['/product', '/payment', '/checkout-success']
 
 export default function App() {
-  const { token, setUser, setToken, setLang } = useStore()
+  const { token, setUser, setToken, setLang, setCartCount } = useStore()
   const location = useLocation()
 
   useEffect(() => {
@@ -66,11 +66,13 @@ export default function App() {
             const me = await authAPI.me()
             setUser(me)
             if (me?.language) setLang(me.language)
+            cartAPI.get(me.id).then(c => setCartCount(c?.item_count || 0)).catch(() => {})
           }
         } else if (effectiveToken) {
           const me = await authAPI.me()
           setUser(me)
           if (me?.language) setLang(me.language)
+          cartAPI.get(me.id).then(c => setCartCount(c?.item_count || 0)).catch(() => {})
         }
       } catch (e) {
         console.error('Auth error:', e)
