@@ -73,6 +73,7 @@ export default function ProductPage() {
   const nav = useNavigate()
   const { user, setCartCount, cartCount, favoriteIds, addFavoriteId, removeFavoriteId } = useStore()
   const [data, setData]         = useState(null)
+  const [related, setRelated]   = useState([])
   const [selSize, setSelSize]   = useState('')
   const [selColor, setSelColor] = useState('')
   const [qty, setQty]           = useState(1)
@@ -88,11 +89,19 @@ export default function ProductPage() {
   const [showReviewForm, setShowReviewForm] = useState(false)
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     productAPI.get(id).then(d => {
       setData(d)
       if (d?.product?.sizes?.length === 1) setSelSize(d.product.sizes[0])
       if (d?.product?.colors?.length === 1) setSelColor(d.product.colors[0])
+      if (d?.product?.category_id) {
+        productAPI.list({ category_id: d.product.category_id, limit: 8 })
+          .then(r => setRelated((r.items || []).filter(p => String(p.id) !== String(id))))
+          .catch(() => {})
+      }
     }).catch(() => nav('/catalog'))
+    setRelated([])
+    setSelSize(''); setSelColor(''); setQty(1); setErr('')
   }, [id])
 
   if (!data) return (
@@ -419,6 +428,40 @@ export default function ProductPage() {
           reviews.map(r => <ReviewCard key={r.id} review={r} />)
         )}
       </div>
+
+      {/* ── O'xshash mahsulotlar ───────────────────────────────────────────── */}
+      {related.length > 0 && (
+        <div style={{ marginTop: 8 }}>
+          <div style={{ padding: '14px 16px 8px', fontSize: 15, fontWeight: 700, color: '#111827' }}>
+            O'xshash mahsulotlar
+          </div>
+          <div style={{ display: 'flex', gap: 10, padding: '0 16px 16px', overflowX: 'auto', scrollbarWidth: 'none' }}>
+            {related.map(p => {
+              const img = p.images?.[0] ? fixUrl(p.images[0]) : null
+              return (
+                <div
+                  key={p.id}
+                  onClick={() => nav(`/product/${p.id}`)}
+                  style={{ width: 130, flexShrink: 0, borderRadius: 14, overflow: 'hidden', background: '#fff', cursor: 'pointer', boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}
+                >
+                  <div style={{ height: 150, background: '#F3F4F6', position: 'relative', overflow: 'hidden' }}>
+                    {img
+                      ? <img src={img} alt={p.name_uz} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      : <div style={{ width: '100%', height: '100%', background: 'linear-gradient(150deg,#F5EDE8,#DCAA80,#C9956C)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3c1.1 0 2 .9 2 2" stroke="rgba(255,255,255,.7)" strokeWidth="1.5" strokeLinecap="round"/><path d="M12 5L3 11h18L12 5z" fill="rgba(255,255,255,.2)" stroke="rgba(255,255,255,.65)" strokeWidth="1.2" strokeLinejoin="round"/><rect x="3" y="11" width="18" height="9" rx="1" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.65)" strokeWidth="1.2"/></svg>
+                        </div>
+                    }
+                  </div>
+                  <div style={{ padding: '8px 8px 10px' }}>
+                    <div style={{ fontSize: 11, fontWeight: 600, color: '#111827', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{p.name_uz}</div>
+                    <div style={{ fontSize: 12, fontWeight: 700, color: '#C9956C', marginTop: 3 }}>{fmtSum(p.price)} so'm</div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

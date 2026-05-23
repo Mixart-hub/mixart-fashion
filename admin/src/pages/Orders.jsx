@@ -205,8 +205,16 @@ export default function OrdersAdmin() {
                             {/* Shipping */}
                             <div className="w-52">
                               <div className="text-xs font-semibold text-gray-500 uppercase mb-2">Yetkazish</div>
-                              <div className="text-sm text-gray-700 mb-1">{o.delivery_address || '—'}</div>
-                              {o.note && <div className="text-xs text-amber-600 mt-2 bg-amber-50 px-2 py-1 rounded-lg">{o.note}</div>}
+                              <div className="text-sm text-gray-700 mb-1">📍 {o.delivery_address || '—'}</div>
+                              {(o.delivery_name || o.delivery_phone) && (
+                                <div className="text-sm text-gray-600 mb-1">
+                                  👤 {[o.delivery_name, o.delivery_phone].filter(Boolean).join(' · ')}
+                                </div>
+                              )}
+                              {o.estimated_delivery && (
+                                <div className="text-xs text-blue-600 mb-1">🕐 {o.estimated_delivery}</div>
+                              )}
+                              {o.note && <div className="text-xs text-amber-600 mt-2 bg-amber-50 px-2 py-1 rounded-lg">📝 {o.note}</div>}
                             </div>
 
                             {/* Status update */}
