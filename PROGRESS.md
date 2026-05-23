@@ -246,6 +246,20 @@
 
 ---
 
+## ✅ Sessiya 11 — CatalogPage sort + backend order (2026-05-23)
+
+### Backend (products.js)
+- `order=ASC|DESC` parametri qo'shildi (GET /api/products)
+- `safeOrder` — faqat ASC/DESC ruxsat beriladi (injection oldini olish)
+
+### Frontend (CatalogPage.jsx)
+- `sort` state: `{ field, order }` — `created_at DESC` default
+- Sort chips qatori: Yangi / Arzon / Qimmat / Reyting / Ommabop
+- `buildParams()` — `sort` va `order` ni API'ga uzatadi
+- `useEffect` — `[selCat, sort]` — sort o'zgarsa qayta yuklanadi
+
+---
+
 ## ✅ Sessiya 10 — Checkout yaxshilandi (2026-05-23)
 
 ### Frontend (CartPage.jsx)

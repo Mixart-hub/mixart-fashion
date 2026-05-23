@@ -31,7 +31,7 @@ function parseProduct(p) {
 // GET /api/products
 router.get('/', (req, res) => {
   try {
-    const { category_id, search, is_trending, is_new_arrival, favorites_of, limit = 20, skip = 0, sort = 'created_at' } = req.query
+    const { category_id, search, is_trending, is_new_arrival, favorites_of, limit = 20, skip = 0, sort = 'created_at', order = 'DESC' } = req.query
 
     // Favorites filter — different JOIN needed
     if (favorites_of) {
@@ -58,7 +58,9 @@ router.get('/', (req, res) => {
     if (is_new_arrival === 'true') { sql += ' AND p.is_new_arrival = 1' }
 
     const total = db.prepare(sql.replace('SELECT p.*, c.name_uz as category_name', 'SELECT COUNT(*) as cnt')).get(params)?.cnt || 0
-    sql += ` ORDER BY p.${['created_at','price','rating','reviews_count'].includes(sort) ? sort : 'created_at'} DESC LIMIT ? OFFSET ?`
+    const safeSort = ['created_at','price','rating','reviews_count'].includes(sort) ? sort : 'created_at'
+    const safeOrder = order === 'ASC' ? 'ASC' : 'DESC'
+    sql += ` ORDER BY p.${safeSort} ${safeOrder} LIMIT ? OFFSET ?`
     params.push(Number(limit), Number(skip))
 
     const items = db.prepare(sql).all(params).map(parseProduct)

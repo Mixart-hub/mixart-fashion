@@ -156,6 +156,7 @@ export default function CatalogPage() {
   const [loadingMore, setLoadingMore] = useState(false)
   const [search, setSearch]     = useState('')
   const [selCat, setSelCat]     = useState(params.get('category') || '')
+  const [sort, setSort]         = useState({ field: 'created_at', order: 'DESC' })
   const [total, setTotal]       = useState(0)
   const [page, setPage]         = useState(1)
   const [micActive, setMicActive] = useState(false)
@@ -171,10 +172,10 @@ export default function CatalogPage() {
   useEffect(() => {
     loadProducts(1, true)
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selCat])
+  }, [selCat, sort])
 
   function buildParams(pg) {
-    const p = { limit: LIMIT, skip: (pg - 1) * LIMIT }
+    const p = { limit: LIMIT, skip: (pg - 1) * LIMIT, sort: sort.field, order: sort.order }
     if (selCat)                    p.category_id    = selCat
     if (search)                    p.search         = search
     if (params.get('trending'))    p.is_trending    = true
@@ -291,6 +292,31 @@ export default function CatalogPage() {
                   {c.name_uz}
                 </span>
               </button>
+            )
+          })}
+        </div>
+      </div>
+
+      {/* ── Sort chips ────────────────────────────────────────────────────── */}
+      <div style={{ background: '#fff', borderBottom: '1px solid #F3F4F6', overflowX: 'auto', scrollbarWidth: 'none' }}>
+        <div style={{ display: 'flex', gap: 6, padding: '8px 12px', width: 'max-content' }}>
+          {[
+            { label: 'Yangi',    field: 'created_at', order: 'DESC' },
+            { label: 'Arzon',    field: 'price',       order: 'ASC'  },
+            { label: 'Qimmat',   field: 'price',       order: 'DESC' },
+            { label: 'Reyting',  field: 'rating',      order: 'DESC' },
+            { label: 'Ommabop',  field: 'reviews_count', order: 'DESC' },
+          ].map(s => {
+            const active = sort.field === s.field && sort.order === s.order
+            return (
+              <button key={s.label} onClick={() => setSort({ field: s.field, order: s.order })} style={{
+                padding: '5px 12px', borderRadius: 20, fontSize: 11, fontWeight: active ? 700 : 500,
+                border: active ? '1.5px solid #C9956C' : '1px solid #E5E7EB',
+                background: active ? '#FDF6F0' : '#fafafa',
+                color: active ? '#C9956C' : '#6B7280',
+                cursor: 'pointer', whiteSpace: 'nowrap', transition: 'all .15s',
+                flexShrink: 0,
+              }}>{s.label}</button>
             )
           })}
         </div>
